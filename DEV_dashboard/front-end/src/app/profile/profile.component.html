@@ -1,0 +1,50 @@
+<div style="background: #edf0f2"><a mat-button [routerLink]="'/home'"> Home </a></div>
+<body style="background: #edf0f2">
+    <div class="card">
+        <h1 style="display: block;">{{profile.firstName}}<br>{{profile.lastName}}</h1>
+        <p style="display: block;">Profil</p>
+        <p style="display: block;"><button onclick="location.href='login'">Déconnexion</button></p>
+    </div>
+    <div class="container-switch">
+        <img src="assets/img/Epitech.png" width="100">
+        <div class="onoffswitch" >
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [ngModel]="profile.intra.log" (ngModelChange)="epitech($event)">
+            <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <img src="assets/img/google.jpg" width="50">
+        <div class="onoffswitch" >
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1" [ngModel]="profile.calendar.log" (ngModelChange)="google($event)">
+            <label class="onoffswitch-label" for="myonoffswitch1">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <img src="assets/img/outlook.jpg" width="80">
+        <div class="onoffswitch" >
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" [ngModel]="profile.outlook.log" (ngModelChange)="outlook($event)">
+            <label class="onoffswitch-label" for="myonoffswitch2">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <img src="assets/img/trello.jpg" width="70">
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch3" [ngModel]="profile.trello.log" (ngModelChange)="trello($event)">
+            <label class="onoffswitch-label" for="myonoffswitch3">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <img src="assets/img/yammer.png" width="50">
+        <div class="onoffswitch" >
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch4" [ngModel]="profile.yammer.log" (ngModelChange)="yammer($event)">
+            <label class="onoffswitch-label" for="myonoffswitch4">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,39 @@
+version: '3'
+services:
+  client:
+    build: ./front-end
+    networks:
+      - server
+    ports:
+      - "8080:4200"
+  back:
+    restart: always
+    build: ./back-end
+    depends_on:
+      - redis
+      - mongo
+    ports:
+      - "5000:5000"
+    networks:
+      - server
+    links:
+      - mongo
+      - redis
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    networks: 
+      - server
+  mongo:
+    restart: always
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - server
+    volumes:
+      - ./back-end/db:/data/db
+
+networks:
+  server:

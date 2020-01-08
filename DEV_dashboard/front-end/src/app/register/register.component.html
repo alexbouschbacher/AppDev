@@ -1,0 +1,54 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center" style="background: #edf0f2">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Inscription</mat-card-title>
+        </mat-card-header>
+
+        <form [formGroup]="form" class="example-form" (ngSubmit)="register()">
+
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="firstName" placeholder="Prénom">
+                    <mat-error *ngIf="form.get('firstName').hasError('required')">
+                        Votre prénom est requis.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="lastName" placeholder="Nom">
+                    <mat-error *ngIf="form.get('lastName').hasError('required')">
+                        Votre nom est requis.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="mail" placeholder="Email">
+                    <mat-error *ngIf="form.get('mail').hasError('required')">
+                        Votre email est obligatoire.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('mail').hasError('email')">
+                        Adresse mail invalide.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="password" placeholder="Password">
+                    <mat-error *ngIf="form.get('password').hasError('required')">
+                        Votre mot de passe est obligatoire.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password').hasError('minlength')">
+                        Le mot de passe doit faire au moins 8 caractères.
+                    </mat-error>
+                </mat-form-field>
+
+
+            </mat-card-content>
+
+            <button mat-stroked-button class="btn-block">Inscription</button><!--[routerLink]="['/login']"-->
+
+        </form>
+        <p style="text-align: center">
+            Vous avez déja un compte ? <a [routerLink]="['/login']">Se connecter</a>
+        </p>
+    </mat-card>
+</div>

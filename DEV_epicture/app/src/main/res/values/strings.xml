@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Epicture</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="profile">Profile</string>
+    <string name="TestButton">Test</string>
+    <string name="login">Login</string>
+    <string name="pic">profilePic</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
+    <string name="title">title</string>
+    <string name="mainTitle">EPICTURE x Imgur</string>
+    <string name="avatar">avatar</string>
+    <string name="cover">cover</string>
+</resources>

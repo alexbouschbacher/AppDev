@@ -1,0 +1,115 @@
+<h1 mat-dialog-title>Nouveau Widget</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Selectionne ton service</mat-label>
+        <mat-select [(ngModel)]="newWidget.service" (ngModelChange)="changeService($event)">
+            <mat-option *ngFor="let service of data.services" [value]="service.name">
+                <p style="text-transform: capitalize"> {{service.name}} </p>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="widgets">
+        <mat-label>Selectionne ton widget</mat-label>
+        <mat-select [(ngModel)]="newWidget.name"  (ngModelChange)="changeWidget($event)">
+            <mat-option *ngFor="let widget of this.widgets" [value]="widget.name">
+                <p style="text-transform: capitalize"> {{widget.name}} </p>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div *ngIf="widget">
+        <mat-label>Description:</mat-label>
+        <p style="font-size: 12px">{{widget.description}}</p>
+    </div>
+    <div *ngIf="this.widget">
+        <mat-label>Délai d'update (en sec):</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.refresh' name="time">
+        <br/>
+    </div>
+
+    <mat-form-field *ngIf="newWidget.service == 'intra' && newWidget.name == 'calendar'">
+        <mat-label>Durée</mat-label>
+        <mat-select [(ngModel)]='newWidget.params.duration'>
+            <mat-option value='day'>Jour</mat-option>
+            <mat-option value='week'>Mois</mat-option>
+            <mat-option value='month'>Année</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="newWidget.service == 'intra' && newWidget.name == 'notes'">
+        <mat-label>Selectionne ton module</mat-label>
+        <mat-select [(ngModel)]="newWidget.params.module">
+            <mat-option *ngFor="let module of list_arg" [value]="module.codemodule">
+                <p>{{module.title}}</p>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="newWidget.service == 'yammer' && newWidget.name == 'messages'">
+        <mat-label>Nombre max de messages:</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.params.limit' name="limit">
+        <br/>
+        <mat-form-field>
+            <mat-label>Selectionne ton channel</mat-label>
+            <mat-select [(ngModel)]="newWidget.params.channel">
+                <mat-option *ngFor="let channel of list_arg" [value]="channel.id">
+                    <p>{{channel.full_name}}</p>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="newWidget.service == 'outlook' && newWidget.name == 'mails'">
+        <mat-label>Nombre max de messages:</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.params.max' name="outMax">
+        <br/>
+        <mat-label>Mail recu de:</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.params.from' name="from">
+        <br/>
+    </div>
+
+
+    <div *ngIf="newWidget.service == 'calendar' && newWidget.name == 'calendar'">
+        <mat-label>Nombre de prochain events:</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.params.max' name="calMax">
+        <br/>
+    </div>
+
+    <div *ngIf="newWidget.service == 'news' && newWidget.name == 'theme'">
+        <mat-label>Thème des articles:</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.params.query' name="queryN">
+        <br/>
+    </div>
+
+    <div *ngIf="newWidget.service == 'news' && newWidget.name == 'author'">
+        <mat-form-field>
+            <mat-label>Selectionne ton auteur</mat-label>
+            <mat-select [(ngModel)]="newWidget.params.authors">
+                <mat-option *ngFor="let author of list_arg" [value]="author.id">
+                    <p>{{author.name}}</p>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="newWidget.service == 'trello' && newWidget.name == 'board'">
+        <mat-form-field>
+            <mat-label>Selectionne ton tableau</mat-label>
+            <mat-select [(ngModel)]="newWidget.params.board">
+                <mat-option *ngFor="let board of list_arg" [value]="board.id">
+                    <p>{{board.name}}</p>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="newWidget.service == 'trello' && newWidget.name == 'ending'">
+        <mat-label>Jours avant expiration:</mat-label>
+        <input style="background:transparent; color: white; border: 1px; font-size: 15px" [(ngModel)]='newWidget.params.time' name="time">
+        <br/>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Non merci</button>
+    <button mat-button  [mat-dialog-close]="newWidget" cdkFocusInitial>Ok</button>
+</div>

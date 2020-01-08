@@ -1,0 +1,122 @@
+<body>
+    <mat-toolbar color="accent">
+        <mat-toolbar-row>
+            <h1>Dashboard</h1>
+            <div>
+                <button mat-button (click)="openDialog()">Ajouter un widget</button>
+                <a mat-button [routerLink]="'/profil'"> Profil </a>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div cdkDropList (cdkDropListDropped)="drop($event)">
+        <div class="example-box" cdkDragBoundary=".example-boundary" *ngFor="let widget of widgets" cdkDrag>
+            <div *ngIf="widget.name == 'notes' && widget.service=='intra' && widget.result">
+                <div>
+                    <div><b>{{widget.params[0].value}}</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let note of widget.result" style="font-size: 12px">
+                    {{note.title}} : {{note.final_note}}
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'calendar' && widget.service=='intra' && widget.result">
+                <div>
+                    <div><b>Next {{widget.params[0].value}}</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let acti of widget.result" style="font-size: 12px">
+                    {{acti.start}} : {{acti.acti_title}}
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'messages' && widget.service=='yammer' && widget.result">
+                <div>
+                    <div><b>{{widget.result.meta.feed_name}}</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let message of widget.result.messages" style="font-size: 12px">
+                    <a style="color: #000; text-decoration: none" href={{message.web_url}}>
+                        <b>{{message.title}}</b>
+                        <p>{{message.content_excerpt}}</p>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'mails' && widget.service=='outlook' && widget.result">
+                <div>
+                    <div><b>Mails de {{widget.params[1].value}}</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let mail of widget.result" style="font-size: 12px">
+                    <a style="color: #000; text-decoration: none" href={{mail.webLink}}>
+                    <p><b>{{mail.subject}}</b> {{mail.bodyPreview}}</p>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'calendar' && widget.service=='calendar' && widget.result">
+                <div>
+                    <div><b>Prochain event dans la semaine</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let event of widget.result" style="font-size: 12px">
+                    <p><b>{{event.summary}}</b> : {{event.start.dateTime | date:'MMM d, y, HH:mm:ss'}} - {{event.end.dateTime | date:'MMM d, y, HH:mm:ss'}}</p>
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'theme' && widget.service=='news' && widget.result">
+                <div>
+                    <div><b>Articles à propos de '{{widget.params[0].value}}'</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let article of widget.result" style="font-size: 12px; display: inline-block; margin-left: 20px">
+                    <div>
+                        <img style="width:200px; height:200px" src={{article.urlToImage}}/>
+                    </div>
+                    <div>
+                        <a style="color: #000; text-decoration: none" href={{article.url}}>
+                            <b>{{article.title}}</b>
+                            <p>Written by {{article.author}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'author' && widget.service=='news' && widget.result">
+                <div>
+                    <div><b>Articles de '{{widget.params[0].value}}'</b></div>
+                </div>
+                <br/>
+                <div *ngFor="let article of widget.result" style="font-size: 12px; display: inline-block; margin-left: 20px">
+                    <div>
+                        <img style="width:200px; height:200px" src={{article.urlToImage}}/>
+                    </div>
+                    <div>
+                        <a style="color: #000; text-decoration: none" href={{article.url}}>
+                            <b>{{article.title}}</b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'board' && widget.service=='trello' && widget.result">
+                <div>
+                    <div><b>Cartes assignées dans le tableau '{{widget.params[0].value}}'</b></div>
+                </div>
+                <div *ngFor="let card of widget.result" style="font-size: 12px;">
+                    <div style="margin-top:5px">
+                        <a style="color: #000; text-decoration: none" href={{card.url}}>
+                            {{card.name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="widget.name == 'ending' && widget.service=='trello' && widget.result">
+                <div>
+                    <div><b>Cartes assignées se terminant dans {{widget.params[0].value}} jours</b></div>
+                </div>
+                <div *ngFor="let card of widget.result" style="font-size: 12px;">
+                    <div style="margin-top:5px">
+                        <a style="color: #000; text-decoration: none" href={{card.url}}>
+                            {{card.name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

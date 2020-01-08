@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|fill_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videoView">
+
+        <RadioGroup
+            android:id="@+id/groupVote"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/upVote"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/ic_upvote_empty"
+                android:text="244"
+                android:paddingHorizontal="5dp"/>
+
+            <RadioButton
+                android:id="@+id/downVote"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/ic_downvote_empty"
+                android:text="176"
+                android:paddingHorizontal="5dp"/>
+
+        </RadioGroup>
+
+        <RadioButton
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:button="@drawable/ic_comment"
+            android:clickable="false"
+            android:paddingHorizontal="5dp"
+            android:text="102" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
